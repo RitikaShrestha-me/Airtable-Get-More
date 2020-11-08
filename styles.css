@@ -1,0 +1,643 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: Graphik, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.42857;
+  background-color: rgb(248, 250, 255);
+}
+
+.nav {
+  padding: 3rem 8rem;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.sticky {
+  background-color: white;
+  box-shadow: 0 0 2rem #3333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.brandLogo {
+  background: url("data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ibG9nby1zdmcgdS1tcmctMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgODQyIDE2OCIgcm9sZT0iaW1nIj48dGl0bGU+SGVscCBTY291dCBsb2dvPC90aXRsZT48ZGVzYyBpZD0iaGVscHNjb3V0LWxvZ28tZGVzYy0xIj5IZWxwIERlc2sgc29mdHdhcmUgLSBDdXN0b21lciBTdXBwb3J0IFNvZnR3YXJlPC9kZXNjPgogICAgPHN0eWxlPi5zdDN7ZmlsbDojMmEzYjQ3fS5zdDF7ZmlsbDojMTI5MmVlfTwvc3R5bGU+CiAgICA8cGF0aCBjbGFzcz0ic3QzIiBkPSJNMjMyIDMxLjVsLS4zLjF2NDQuN2gtNDIuNFYzMS42bC0uMy0uMWMtNi4zLTEuMy0xMi41LTEuMy0xOC43IDBsLS4zLjF2MTAyLjhsLjMuMWMzLjEuNiA2LjIgMSA5LjMgMXM2LjItLjMgOS40LTFsLjMtLjFWOTIuN2g0Mi40djQxLjdsLjMuMWM2LjIgMS4zIDEyLjUgMS4zIDE4LjcgMGwuMy0uMVYzMS42bC0uMy0uMWMtNi4zLTEuMi0xMi41LTEuMi0xOC43IDB6TTI5Ny43IDYwLjRjLTIyLjIgMC0zNS40IDE0LTM1LjQgMzcuNSAwIDEyLjIgMi44IDIxLjkgOC40IDI4LjYgNi4xIDcuMyAxNS4yIDExIDI3LjMgMTEgMjAuNSAwIDMxLTEyLjIgMzIuMy0yNC4zdi0uM2wtLjMtLjFjLTUuMi0xLjctMTAtMi4xLTE1LjctMS4zaC0uMnYuMmMtMS4yIDcuMi03LjIgMTEuNS0xNS45IDExLjUtMTIuMiAwLTE4LjItNi43LTE4LjQtMjAuNWg1MS42di0uM2MxLjUtMTMuNi0xLjItMjQuNi03LjgtMzIuMS02LjEtNi40LTE1LTkuOS0yNS45LTkuOXptLS4yIDEzLjNjNS4xIDAgOS40IDEuNiAxMi4zIDQuNyAzIDMuMiA0LjUgOCA0LjIgMTMuN2gtMzQuMmMuMy0xMS43IDYuOC0xOC40IDE3LjctMTguNHpNMzQzLjkgMzEuNWwtLjMuMXYxMDIuOGwuMy4xYzIuOS42IDUuOCAxIDguOCAxIDIuOSAwIDUuOS0uMyA4LjgtMWwuMy0uMVYzMS42bC0uMy0uMWMtNS44LTEuMy0xMS43LTEuMi0xNy42IDB6TTQxMi40IDYwLjRjLTcuNyAwLTE1LjggMy0yMy41IDguN2wtMS4xLTUuNC0uMi0uMWMtNC40LTEuMy04LTEuMy0xMi4zIDBsLS4yLjFWMTY2bC4zLjFjMi45LjYgNS44IDEgOC44IDFzNS45LS4zIDguOC0xbC4zLS4xdi0zNC4yYzYuMSAzLjkgMTIuNiA1LjcgMTkuOSA1LjcgMjAuMiAwIDMyLjMtMTQuMyAzMi4zLTM4LjQtLjEtMjQuNS0xMi4xLTM4LjctMzMuMS0zOC43ek0zOTMgODAuN2M1LjQtMy43IDEwLjQtNS40IDE1LjgtNS40IDEyLjMgMCAxOSA4LjUgMTkgMjQuMSAwIDE1LjMtNi42IDIzLjQtMTkuMiAyMy40LTUuNCAwLTEwLjUtMS43LTE1LjYtNS4zVjgwLjd6TTUyMi42IDc5LjFjLTMuMS0xLjItNS45LTIuMi04LjYtMy4xLTE0LTUtMjIuNC04LTIyLjYtMTUuNi0uMS0zLjUgMS02LjUgMy40LTkgMy41LTMuNiA5LjQtNS41IDE2LjYtNS41IDcuMSAwIDEyLjYgMS45IDE1LjkgNS40IDIuOCAzIDQgNy4xIDMuNyAxMi4ydi4zbC4zLjFjNi4xIDEuMiAxMi4yIDEuMSAxOC44LS40bC4zLS4xdi0uM2MuNC04LjYtMi4yLTE2LjEtNy41LTIxLjctNi42LTctMTcuMi0xMC43LTMwLjYtMTAuOGgtLjRjLTI0LjkgMC0zOS45IDExLjEtNDAuMSAyOS43LS4xIDE4LjUgMTYuOSAyNC43IDI3LjEgMjguM2wxLjUuNmMzLjQgMS4yIDYuNiAyLjMgOS40IDMuMyAxMy44IDQuOCAyMi4xIDcuNyAyMi40IDE1IC4xIDMuOC0xIDYuOS0zLjMgOS4zLTMuMyAzLjQtOS4xIDUuMS0xNi44IDUtOC41IDAtMTUtMi4yLTE4LjctNi4yLTIuNy0zLTMuOC02LjgtMy40LTExLjR2LS4zbC0uMy0uMWMtNi4yLTEuMi0xMi41LTEuMS0xOC43LjNsLS4yLjF2LjNjLS41IDguMyAyIDE1LjcgNy40IDIxLjQgNy4yIDcuNyAxOSAxMS43IDM0LjIgMTEuNiAxNC45IDAgMzkuNC00IDM5LjYtMzAtLjMtMTcuMy0xNS4xLTIyLjktMjkuNC0yOC40ek01OTYuNyA3NS4zYzEyLjMgMCAxNS4yIDggMTUuOCAxMi43di4zaC4zYzUuNy45IDExLjEuNSAxNi4zLTFsLjMtLjF2LS4zYy0uNS03LjItMy42LTEzLjctOC43LTE4LjQtNS44LTUuMy0xNC4xLTguMi0yMy45LTguMi0yMy40IDAtMzYuMyAxMy43LTM2LjMgMzguNiAwIDI0LjggMTIuOCAzOC41IDM2IDM4LjUgMTAgMCAxOC40LTIuOSAyNC4zLTguNCA0LjktNC42IDcuOS0xMC44IDguNS0xNy41di0uM2wtLjMtLjFjLTQuOS0xLjctMTAuMy0yLTE2LjItMWgtLjJ2LjJjLTEuNiAxMS4yLTEyLjUgMTItMTUuOCAxMi0xMi42IDAtMTguNS03LjUtMTguNS0yMy42LS4xLTE1LjkgNS44LTIzLjQgMTguNC0yMy40ek02NzMuNyA2MC40Yy0yMyAwLTM1LjcgMTMuNy0zNS43IDM4LjYgMCAyNC44IDEyLjcgMzguNSAzNS43IDM4LjUgMjMgMCAzNS43LTEzLjcgMzUuNy0zOC41IDAtMjQuOS0xMi43LTM4LjYtMzUuNy0zOC42ek02OTIgOTkuMWMwIDE1LjktNiAyMy42LTE4LjMgMjMuNnMtMTguMy03LjctMTguMy0yMy42YzAtMTYuMiA1LjgtMjMuOCAxOC4zLTIzLjggMTIuMyAwIDE4LjMgNy44IDE4LjMgMjMuOHpNNzY3IDYzLjdsLS4zLjFWMTE1Yy01LjggNS0xMS4xIDcuMi0xNy4yIDcuMi04LjYgMC0xMi4zLTQuOS0xMi4zLTE2LjV2LTQybC0uMy0uMWMtNS44LTEuNC0xMS43LTEuNC0xNy42IDBsLS4zLjF2NDYuMWMwIDE3LjUgOS40IDI3LjYgMjUuOSAyNy42IDguOCAwIDE2LjUtMy40IDI0LjgtMTFsMS43IDggLjIuMWM0LjIgMS4xIDguNiAxLjEgMTIuOCAwbC4zLS4xVjYzLjdsLS4zLS4xYy01LjYtMS40LTExLjUtMS40LTE3LjQuMXpNODQwLjEgMTIwLjdsLS4xLS4zLS4zLjFjLTcgMS42LTExLjEgMS41LTEzLjUtLjQtMi0xLjYtMi45LTQuNC0yLjktOC44Vjc4LjVoMTQuMmwuMS0uM2MxLTQuOCAxLTkuNyAwLTE0LjZsLS4xLS4zaC0xNC4yVjQzLjlsLS4zLS4xYy01LjgtMS4zLTExLjctMS4zLTE3LjUgMGwtLjMuMS4xIDE5LjRoLTlsLS4xLjNjLTEuMSA0LjgtMS4xIDkuOCAwIDE0LjZsLjEuM2g5bC4xIDMxLjVjMCA4LjguNSAxNy43IDYuNiAyMi44IDMuMyAyLjcgOC4xIDQuMSAxNC4zIDQuMSAzLjggMCA4LjItLjUgMTMuMy0xLjVoLjJsLjEtLjJjMS40LTQuNyAxLjUtOS42LjItMTQuNXoiLz4KICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0xMC45IDk3LjJsNDguNi00OC42YzYuMy02LjIgMTAuMi0xNC45IDEwLjItMjQuNCAwLTkuNC0zLjgtMTgtOS45LTI0LjJMMTEuMiA0OC42QzQuOSA1NC44IDEgNjMuNSAxIDczYzAgOS41IDMuOCAxOCA5LjkgMjQuMnpNMTI4LjYgNjguOEw4MCAxMTcuNGMtNi4zIDYuMi0xMC4yIDE0LjktMTAuMiAyNC40IDAgOS40IDMuOCAxOCA5LjkgMjQuMmw0OC42LTQ4LjZjNi4zLTYuMiAxMC4yLTE0LjkgMTAuMi0yNC40IDAtOS41LTMuOC0xOC05LjktMjQuMnpNMTI4LjMgNDguN2M2LjMtNi4yIDEwLjItMTQuOSAxMC4yLTI0LjQgMC05LjQtMy44LTE4LTkuOS0yNC4yTDExLjIgMTE3LjRDNC45IDEyMy43IDEgMTMyLjMgMSAxNDEuOWMwIDkuNCAzLjggMTggOS45IDI0LjJMMTI4LjMgNDguN3oiLz4KPC9zdmc+Cg==")
+    no-repeat;
+  display: block;
+  height: 3rem;
+  width: 15%;
+  padding: 0.5rem 0 1rem;
+}
+
+.nav-items {
+  width: 55%;
+}
+
+.nav-items ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.nav-items li {
+  padding: 13px 20px;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: rgb(85, 101, 117);
+  list-style-type: none;
+  cursor: pointer;
+}
+
+.nav-items-dropdown::after {
+  border-top-width: 0.2rem;
+  border-top-style: solid;
+  border-right-width: 0.2rem;
+  border-right-style: solid;
+  content: "";
+  display: inline-block;
+  margin-left: 0.5rem;
+  position: relative;
+  pointer-events: none;
+  width: 0.4rem;
+  height: 0.4rem;
+  transition: all 0.15s ease 0s;
+  vertical-align: middle;
+  transform: rotate(135deg);
+  top: -0.2rem;
+  left: 0.2rem;
+}
+
+.nav-button {
+  width: 30%;
+  text-align: right;
+}
+.nav-button-login {
+  text-align: right;
+  appearance: none;
+  text-decoration: none;
+  margin: 2rem 2rem;
+  font-size: 1.5rem;
+  color: rgb(64, 82, 97);
+  font-weight: 400;
+}
+.nav-button-freetrail {
+  font-size: 1.5rem;
+  color: white;
+  background-color: #2e92ee;
+  padding: 1.2rem 2rem;
+  border: none;
+  border-radius: 0.4rem;
+}
+.nav-button-freetrail:hover {
+  background-color: rgb(0, 119, 204);
+}
+
+.nav-hamburger {
+  position: absolute;
+  visibility: hidden;
+}
+
+/* brand-info section */
+.brand-info {
+  margin: 15rem 0 14rem;
+  position: relative;
+  display: flex;
+}
+
+.brand-info-video {
+  position: relative;
+  top: 0rem;
+  left: -1rem;
+  border-radius: 5px;
+  width: 80rem;
+  height: auto;
+  overflow: hidden;
+  box-shadow: 20px 20px 40px #3335;
+}
+
+.brand-info-image {
+  transition: transform 500ms ease 0s;
+  width: 100%;
+  object-fit: cover;
+  background-position: top;
+  height: 100%;
+}
+.brand-info-image:hover {
+  transform: scale(1.05);
+}
+
+.brand-info-button {
+  position: absolute;
+  left: calc(50% - 5rem);
+  top: calc(50% - 5rem);
+  right: calc((50vw - 15px) / 2);
+  background: rgba(22, 51, 127, 0.8);
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand-info-text {
+  width: 55%;
+  padding: 1rem 6rem;
+}
+
+.quote {
+  margin-right: 4rem;
+  font-size: 3.6rem;
+  line-height: 1.2;
+  letter-spacing: -0.02rem;
+  font-weight: 600;
+  color: #1d2b36;
+  margin-bottom: 2rem;
+}
+
+.quote::before {
+  content: open-quote;
+  margin-left: -3rem;
+}
+.quote::after {
+  content: close-quote;
+  position: absolute;
+  margin-top: -1rem;
+}
+
+.quote::before,
+.quote::after {
+  font-size: 6rem;
+}
+
+.quote-author {
+  font-size: 1.5rem;
+  color: rgb(85, 101, 117);
+}
+
+.quote-author span {
+  border-left: 1px solid rgba(85, 101, 117, 0.3);
+  margin-left: 1rem;
+  padding-left: 1.2rem;
+  font-style: italic;
+}
+
+.trial-info {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+.trail-input {
+  width: 70%;
+  height: 5rem;
+  border: 1px solid rgba(85, 101, 117, 0.3);
+  border-radius: 0.5rem;
+  padding-left: 2rem;
+  font-size: 1.6rem;
+}
+
+.trail-input:focus {
+  outline: none;
+  border: 0.12rem solid rgb(37, 73, 168);
+}
+
+.trail-input-button {
+  background-color: rgb(37, 73, 168);
+  color: white;
+  font-size: 1.8rem;
+  width: 25%;
+  height: 5rem;
+  border: 1px solid rgb(37, 73, 168);
+  margin-left: -2rem;
+  border-radius: 0 0.4rem 0.4rem 0;
+}
+
+.trail-input-button:hover {
+  background-color: rgb(22, 51, 127);
+}
+
+.demo-action {
+  font-size: 1.8rem;
+  font-weight: 200;
+}
+
+.demo-button {
+  color: rgb(37, 73, 168);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.demo-button::after {
+  border-top-width: 0.2rem;
+  border-top-style: solid;
+  border-right-width: 0.2rem;
+  border-right-style: solid;
+  content: "";
+  display: inline-block;
+  margin-left: 0.5rem;
+  position: relative;
+  pointer-events: none;
+  width: 0.4rem;
+  height: 0.4rem;
+  transition: all 0.15s ease 0s;
+  vertical-align: middle;
+  transform: rotate(45deg);
+  left: 0.2rem;
+  transition: left 300ms ease;
+}
+
+.demo-button:hover::after {
+  left: 0.8rem;
+}
+
+.brand-trust-title h2 {
+  color: #1d2b36;
+  font-size: 3rem;
+  text-align: center;
+  letter-spacing: -0.02rem;
+  font-weight: 200;
+  margin-bottom: 6rem;
+}
+
+.brand-trust-images {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-trust-images {
+  margin: 0 15rem 10rem 15rem;
+}
+.brand-logo {
+  width: 100%;
+  height: auto;
+  max-height: 10rem;
+  filter: grayscale(100%);
+  opacity: 0.6;
+}
+
+/* code for wave */
+.wave {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave svg {
+  position: relative;
+  display: block;
+  width: calc(151% + 1.3px);
+  height: 133px;
+}
+
+.wave .shape-fill {
+  fill: white;
+}
+
+
+/* mobile responsive code */
+@media only screen and (min-width: 430px) and (max-width: 768px) {
+  html {
+    font-size: 5px;
+  }
+  .nav,
+  .brand-info {
+    padding: 5rem;
+  }
+
+  .brandLogo {
+    height: 6rem;
+    width: 80%;
+  }
+  .nav-items,
+  .nav-button {
+    display: none;
+  }
+  .nav-hamburger {
+    right: 0;
+    visibility: visible;
+  }
+  .nav-hamburger img {
+    height: 5rem;
+    margin-right: 6rem;
+  }
+
+  .brand-info {
+    flex-direction: column;
+  }
+
+  .brand-info-video {
+    left: 0;
+    width: 100%;
+  }
+
+  .brand-info-button {
+    height: 18rem;
+    width: 18rem;
+    left: calc(50% - 9rem);
+    top: calc(50% - 9rem);
+  }
+
+  .brand-info-text {
+    width: 100%;
+    padding: 6rem 3rem;
+  }
+
+  .quote {
+    font-size: 4.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .quote-author {
+    font-size: 3.2rem;
+    color: rgb(85, 101, 117);
+    margin-bottom: 10rem;
+  }
+
+  .quote-author strong {
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  .quote-author span {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .trial-info {
+    margin-bottom: 4rem;
+  }
+
+  .trail-input, 
+  .trail-input-button{
+    width: 55%;
+    height: 10rem;
+    font-size: 3.2rem;
+    margin-bottom: 2rem;
+    margin-left: 0;
+  }
+
+  .trail-input-button{
+    width: 45%;
+    margin-left: -1rem;
+  }
+
+  .demo-action {
+    font-size: 3.2rem;
+  }
+
+  .demo-button::after {
+    height: 1.2rem;
+    width: 1.2rem;
+  }
+
+  .brand-trust {
+    margin: 10rem;
+  }
+  .brand-trust-title h2 {
+    padding: 0 7rem;
+    font-size: 5rem;
+  }
+  .brand-trust-images {
+    flex-wrap: wrap;
+    margin: 0 0 10rem 0;
+  }
+  .brand-logo {
+    width: 50%;
+    max-height: 14rem;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  html {
+    font-size: 5.6px;
+  }
+  .nav,
+  .brand-info {
+    padding: 5rem;
+  }
+  .brand-info {
+    padding: 8rem 16rem 0;
+    margin: 15rem 0 5rem;
+  }
+
+  .brandLogo {
+    height: 6rem;
+    width: 80%;
+  }
+
+  .nav-items,
+  .nav-button {
+    display: none;
+  }
+  .nav-hamburger {
+    right: 0;
+    visibility: visible;
+  }
+  .nav-hamburger img {
+    height: 5rem;
+    margin-right: 6rem;
+  }
+
+  .brand-info {
+    flex-direction: column;
+  }
+
+  .brand-info-video {
+    left: 0;
+    width: 100%;
+  }
+
+  .brand-info-button {
+    height: 18rem;
+    width: 18rem;
+    left: calc(50% - 9rem);
+    top: calc(50% - 9rem);
+  }
+
+  .brand-info-text {
+    width: 100%;
+    padding: 6rem 13rem;
+  }
+
+  .quote {
+    font-size: 4.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .quote-author {
+    font-size: 2.8rem;
+    color: rgb(85, 101, 117);
+    margin-bottom: 10rem;
+  }
+  .trial-info {
+    margin-bottom: 4rem;
+  }
+
+  .trail-input,
+  .trail-input-button {
+    height: 9rem;
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .trail-input-button {
+    width: 30%;
+  }
+
+  .demo-action {
+    font-size: 3.2rem;
+  }
+
+  .demo-button::after {
+    height: 1.2rem;
+    width: 1.2rem;
+  }
+
+  .brand-trust {
+    margin: 10rem;
+    padding: 0rem 7rem;
+  }
+  .brand-trust-title h2 {
+    padding: 0rem 7rem;
+    font-size: 4.8rem;
+  }
+  .brand-trust-images {
+    flex-wrap: wrap;
+    margin: 0 0 10rem 0;
+  }
+  .brand-logo {
+    width: 33.3%;
+    max-height: 14rem;
+  }
+}
+
+@media only screen and (min-width: 991px) and (max-width: 1200px) {
+  html {
+    font-size: 7px;
+  }
+}
+
+
+@media only screen and (max-width: 430px) {
+  html {
+    font-size: 5px;
+  }
+  .nav,
+  .brand-info {
+    padding: 5rem;
+  }
+
+  .brandLogo {
+    height: 6rem;
+    width: 80%;
+  }
+  .nav-items,
+  .nav-button {
+    display: none;
+  }
+  .nav-hamburger {
+    right: 0;
+    visibility: visible;
+  }
+  .nav-hamburger img {
+    height: 5rem;
+    margin-right: 6rem;
+  }
+
+  .brand-info {
+    flex-direction: column;
+  }
+
+  .brand-info-video {
+    left: 0;
+    width: 100%;
+  }
+
+  .brand-info-button {
+    height: 18rem;
+    width: 18rem;
+    left: calc(50% - 9rem);
+    top: calc(50% - 9rem);
+  }
+
+  .brand-info-text {
+    width: 100%;
+    padding: 6rem 3rem;
+  }
+
+  .quote {
+    font-size: 4.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .quote-author {
+    font-size: 3.2rem;
+    color: rgb(85, 101, 117);
+    margin-bottom: 10rem;
+  }
+
+  .quote-author strong {
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  .quote-author span {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .trial-info {
+    margin-bottom: 4rem;
+  }
+
+  .trail-input,
+  .trail-input-button {
+    width: 100%;
+    height: 10rem;
+    font-size: 3.2rem;
+    margin-left: 0;
+    margin-bottom: 2rem;
+  }
+
+  .demo-action {
+    font-size: 3.2rem;
+  }
+
+  .demo-button::after {
+    height: 1.2rem;
+    width: 1.2rem;
+  }
+
+  .brand-trust {
+    margin: 10rem;
+  }
+  .brand-trust-title h2 {
+    padding: 0 7rem;
+    font-size: 5rem;
+  }
+  .brand-trust-images {
+    flex-wrap: wrap;
+    margin: 0 0 10rem 0;
+  }
+  .brand-logo {
+    width: 50%;
+    max-height: 14rem;
+  }
+
+}

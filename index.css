@@ -79,6 +79,14 @@ body{
     box-shadow: 0 16px 24px -16px rgba(0,0,0,0.5);
 }
 
+.button{
+    background-color: white !important;
+}
+
+.button:active{
+    transform: scale(0.99);
+}
+
 .explore{
     margin: 3vh auto;
     border-radius: 25px;
